@@ -3,16 +3,21 @@ import { Rendezes } from "./rendezes.js"
 
 $(document).ready(function () {
   init();
-  ('td').append('<button class="törlés">X</button>')
+  
+  
 });
 
 function init() {
   const articleElem = $("article");
   articleElem.html(osszeAllit(ADATLISTA));
-
+ 
+  $('.törlés').on('click', function() {
+    removeItem($(this).closest('tr').index() - 1);
+  });
   $("#knev, #kfajta, #kkor").on("click", function () {
     const id = $(event.target).attr("id");
     Rendezes(ADATLISTA, id.slice(1));
+    
     init();
   });
 }
@@ -24,14 +29,17 @@ function osszeAllit(lista) {
   txt += `<tr class="table-dark"><th id="knev">név</th>
     <th id="kfajta">fajta</th>
     <th id="kkor">kor</th>
-    <th>remove</th>
+    <th></th>
+
+   
     </tr>`;
   for (let index = 0; index < lista.length; index++) {
     txt += `<tr>`;
     for (const key in lista[index]) {
       txt += `<td>${lista[index][key]}</td>`;
+    
     }
-    txt += `<td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})"><i class="fas fa-times"></i></button></td>`;
+    txt += '<td><button class="törlés">❌</button></td>'
     txt += `</tr>`;
   }
   txt += `</table>`;

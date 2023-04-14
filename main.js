@@ -1,10 +1,18 @@
 import { ADATLISTA } from "./adat.js";
 import { Rendezes } from "./rendezes.js"
-
+import { szures } from "./rendezes.js"
+const NEVINPUTELEM=$("#nev1")
+const FAJTAINPUTELEM=$("#fajta1")
 $(document).ready(function () {
   init();
   
-  
+  NEVINPUTELEM.on("keyup" ,function(){
+    const articleElem = $("article");
+    let nevErtek = NEVINPUTELEM.val()
+    let szurtlista=szures(ADATLISTA,"nev",nevErtek)
+    articleElem.html(osszeAllit(szurtlista));
+    
+    })
 });
 
 function init() {
@@ -19,6 +27,7 @@ function init() {
     Rendezes(ADATLISTA, id.slice(1));
     
     init();
+   
   });
 }
 

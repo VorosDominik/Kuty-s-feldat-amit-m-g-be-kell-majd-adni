@@ -51,7 +51,7 @@ function RendezesFajtaSzerint(lista, kulcs) {
 
 export function szures(lista, kulcs, szuresfeltetel) {
   const szurtlista = lista.filter(function (a) {
-    return a[kulcs].includes(szuresfeltetel);
+    return a[kulcs].toUpperCase().includes(szuresfeltetel.toUpperCase());
   });
   return szurtlista;
 }

@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 function init() {
-  const articleElem = $("article");
+  const articleElem = $("#an");
   articleElem.html(osszeAllit(ADATLISTA));
  
   $('.törlés').on('click', function() {
